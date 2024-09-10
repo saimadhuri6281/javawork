@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Men's essentials</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .main {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 20px;
+        }
+        aside {
+            width: 450px;
+            padding: 20px;
+            background-color: lightblue;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-right: 20px;
+        }
+        aside h2 {
+            margin-top: 0;
+            font-size: 1.5em;
+            color: #333;
+        }
+        .filter-group {
+            margin-bottom: 20px;
+        }
+        .filter-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .filter-group input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+        }
+        .filter-group input[type="number"]::placeholder {
+            color: #aaa;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        button {
+            background-color: wheat;
+            border: none;
+            color: #333;
+            padding: 10px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: rgb(0, 128, 128);
+            color: white;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            flex-grow: 1;
+        }
+        .item {
+            text-align: center;
+            width: 220px;
+            margin-bottom: 20px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            transition: box-shadow 0.3s ease;
+        }
+        .item:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .item img:hover {
+            transform: scale(1.1);
+        }
+        p {
+            margin: 5px 0;
+            font-size: 1.1em;
+        }
+        .price {
+            font-weight: bold;
+        }
+        .rating {
+            color: green;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <aside>
+            <h2>Filter Products</h2>
+            <div class="filter-group">
+                <label for="minPrice">Min Price:</label>
+                <input type="number" id="minPrice" name="minPrice" placeholder="0" value="0">
+            </div>
+            <div class="filter-group">
+                <label for="maxPrice">Max Price:</label>
+                <input type="number" id="maxPrice" name="maxPrice" placeholder="2000" value="2000">
+            </div>
+            <button onclick="filterProducts()">Apply Filter</button>
+        </aside>
+        <div class="container">
+            <div class="item">
+                <img src="https://cdn.pixabay.com/photo/2017/07/20/21/08/sunglasses-2523803_1280.jpg" alt="sunglasses">
+                <p><strong>Classic Aviators</strong></p>
+                <p>Stylish sunglasses with UV protection.</p>
+                <p class="price">Rs. 249</p>
+                <p class="rating">Rating: ★★★★☆</p>
+                <button type="button" onclick="window.location.href='checkout.html'">Buy now</button>
+                <button onclick="addToCart('Casual T-Shirt')">Add to cart</button>
+            </div>
+        
+            <div class="item">
+                <img src="https://cdn.pixabay.com/photo/2017/07/13/14/05/wood-sunglasses-2500488_1280.jpg" alt="sunglasses">
+                <p><strong>Wood Frame Sunglasses</strong></p>
+                <p>Eco-friendly wooden frame sunglasses.</p>
+                <p class="price">Rs. 549</p>
+                <p class="rating">Rating: ★★★★☆</p>
+                <button type="button" onclick="window.location.href='checkout.html'">Buy now</button>
+                <button onclick="addToCart('Casual T-Shirt')">Add to cart</button>
+            </div>
+        
+            <div class="item">
+                <img src="https://cdn.pixabay.com/photo/2013/09/01/17/54/sunglasses-178151_640.jpg" alt="sunglasses">
+                <p><strong>Retro Round Sunglasses</strong></p>
+                <p>Fashionable retro sunglasses for every occasion.</p>
+                <p class="price">Rs. 749</p>
+                <p class="rating">Rating: ★★★★★</p>
+                <button type="button" onclick="window.location.href='checkout.html'">Buy now</button>
+                <button onclick="addToCart('Casual T-Shirt')">Add to cart</button>
+            </div>
+        
+            <div class="item">
+                <img src="https://cdn.pixabay.com/photo/2017/07/13/12/21/wood-sunglasses-2500253_640.jpg" alt="sunglasses">
+                <p><strong>Polarized Shades</strong></p>
+                <p>Polarized sunglasses for reducing glare.</p>
+                <p class="price">Rs. 899</p>
+                <p class="rating">Rating: ★★★★☆</p>
+                <button type="button" onclick="window.location.href='checkout.html'">Buy now</button>
+                <button onclick="addToCart('Casual T-Shirt')">Add to cart</button>
+            </div>
+        
+            <div class="item">
+                <img src="https://cdn.pixabay.com/photo/2017/07/13/12/21/wood-sunglasses-2500248_1280.jpg" alt="sunglasses">
+                <p><strong>Vintage Sunglasses</strong></p>
+                <p>Elegant vintage-style wooden sunglasses.</p>
+                <p class="price">Rs. 1019</p>
+                <p class="rating">Rating: ★★★★★</p>
+                <button type="button" onclick="window.location.href='checkout.html'">Buy now</button>
+                <button onclick="addToCart('Casual T-Shirt')">Add to cart</button>
+            </div>
+        
+            <div class="item">
+                <img src="https://cdn.pixabay.com/photo/2016/05/09/19/12/sunglasses-1382261_1280.jpg" alt="sunglasses">
+                <p><strong>Round Metal Sunglasses</strong></p>
+                <p>Classic metal-frame sunglasses.</p>
+                <p class="price">Rs. 599</p>
+                <p class="rating">Rating: ★★★★☆</p>
+                <button type="button" onclick="window.location.href='checkout.html'">Buy now</button>
+                <button onclick="addToCart('Casual T-Shirt')">Add to cart</button>
+            </div>
+        
+            <div class="item">
+                <img src="https://cdn.pixabay.com/photo/2016/05/23/17/30/bag-1410823_640.jpg" alt="bag">
+                <p><strong>Leather Travel Bag</strong></p>
+                <p>Durable leather travel bag for all your essentials.</p>
+                <p class="price">Rs. 1099</p>
+                <p class="rating">Rating: ★★★★★</p>
+                <button type="button" onclick="window.location.href='checkout.html'">Buy now</button>
+                <button onclick="addToCart('Casual T-Shirt')">Add to cart</button>
+            </div>
+        
+            <div class="item">
+                <img src="https://cdn.pixabay.com/photo/2015/09/06/00/55/sunglasses-926791_640.jpg" alt="sunglasses">
+                <p><strong>Sporty Sunglasses</strong></p>
+                <p>Durable sunglasses for active lifestyles.</p>
+                <p class="price">Rs. 789</p>
+                <p class="rating">Rating: ★★★★☆</p>
+                <button type="button" onclick="window.location.href='checkout.html'">Buy now</button>
+                <button onclick="addToCart('Casual T-Shirt')">Add to cart</button>
+            </div>
+        </div>
+        
+    <script>
+        function filterProducts() {
+            const minPrice = parseFloat(document.getElementById('minPrice').value);
+            const maxPrice = parseFloat(document.getElementById('maxPrice').value);
+            const items = document.querySelectorAll('.item');
+
+            items.forEach(item => {
+                const price = parseFloat(item.getAttribute('data-price'));
+                if (price >= minPrice && price <= maxPrice) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function addToCart(productName) {
+            alert(productName + ' has been added to cart successfully!');
+        }
+        function redirecttocheckout() {
+            window.location.href= 'shopping/checkout.html';
+        }
+    </script>
+</body>
+</html>

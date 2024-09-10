@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Amount</title>
+    <style>
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="number"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            margin-top: 10px;
+            font-size: 1.1em;
+        }
+        .message.success {
+            color: green;
+        }
+        .message.error {
+            color: red;
+        }
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #6c757d;
+            color: white;
+        }
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Credit Amount</h1>
+        <input type="number" id="amountInput" placeholder="Enter amount" min="0" required>
+        <button onclick="creditAmount()">Credit Amount</button>
+        <p id="message" class="message"></p>
+        <br>
+        <button class="back-button" onclick="redirectToMain()">Back to Main</button>
+    </div>
+
+    <script>
+        if (localStorage.getItem('authenticated') !== 'true') {
+            window.location.href = "pin.html";
+        }
+
+        function creditAmount() {
+            const amount = parseFloat(document.getElementById('amountInput').value);
+            const message = document.getElementById('message');
+
+            if (isNaN(amount) || amount <= 0) {
+                message.textContent = "Please enter a valid amount.";
+                message.className = "message error";
+            } else {
+                let balance = parseFloat(localStorage.getItem('balance')) || 50000;
+                balance += amount;
+                localStorage.setItem('balance', balance);
+                
+                alert(`Successfully credited ₹${amount.toFixed(2)} to your account.`);
+                message.textContent = `Successfully credited ₹${amount.toFixed(2)} to your account.`;
+                message.className = "message success";
+                document.getElementById('amountInput').value = ""; 
+            }
+        }
+
+        
+        function redirectToMain() {
+            window.location.href = "main.html";
+        }
+    </script>
+</body>
+</html>

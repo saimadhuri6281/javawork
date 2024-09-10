@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kids</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background-color: #f0f0f0;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+            flex: 1;
+        }
+        .box {
+            width: 200px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        .box img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+        }
+        .box-content {
+            padding: 10px;
+            text-align: center;
+        }
+        .box-content h3 {
+            margin: 0;
+            font-size: 1.2em;
+            color: #333;
+        }
+        .box-content p {
+            margin: 5px 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+        .box-content .rating {
+            font-size: 1em;
+            color: #f39c12; 
+        }
+        .box-content .price {
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: #333;
+            font-weight: bold;
+        }
+        aside {
+            width: 250px;
+            padding: 20px;
+            background-color: wheat;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            position: sticky;
+            top: 20px;
+        }
+        aside h2 {
+            margin-top: 0;
+            font-size: 1.5em;
+            color: #333;
+        }
+        .filter-group {
+            margin-bottom: 20px;
+        }
+        .filter-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .filter-group input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+        }
+        .filter-group input[type="number"]::placeholder {
+            color: #aaa;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        button {
+            background-color: lightblue;
+            border: none;
+            color: #333;
+            padding: 10px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: rgb(0, 128, 128);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <aside>
+        <h2>Filter Products</h2>
+        <div class="filter-group">
+            <label for="minPrice">Min Price:</label>
+            <input type="number" id="minPrice" name="minPrice" placeholder="0" value="0">
+        </div>
+        <div class="filter-group">
+            <label for="maxPrice">Max Price:</label>
+            <input type="number" id="maxPrice" name="maxPrice" placeholder="2000" value="2000">
+        </div>
+        <button onclick="filterProducts()">Apply Filter</button>
+    </aside>
+
+    <div class="container">
+        <div class="box" data-price="499">
+            <img src="https://cdn.pixabay.com/photo/2024/07/02/14/49/teddy-8867956_1280.png" alt="Teddy Bear">
+            <div class="box-content">
+                <h3>Teddy Bear</h3>
+                <p>Soft and cuddly teddy bear for children.</p>
+                <div class="rating">★★★★☆</div>
+                <div class="price">₹499</div>
+                <div class="button-container">
+                    <button type="button" onclick="window.location.href='checkout.html'">Buy now</button>
+                    <button onclick="addToCart('Casual T-Shirt')">Add to cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="box" data-price="899">
+            <img src="https://cdn.pixabay.com/photo/2017/02/19/19/58/bobby-car-2080781_1280.jpg" alt="Bobby Car">
+            <div class="box-content">
+                <h3>Bobby Car</h3>
+                <p>Bright and colorful car toy for toddlers.</p>
+                <div class="rating">★★★☆☆</div>
+                <div class="price">₹899</div>
+                <div class="button-container">
+                    <button type="button" onclick="window.location.href='checkout.html'">Buy now</button>
+                    <button onclick="addToCart('Casual T-Shirt')">Add to cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="box" data-price="99">
+            <img src="https://cdn.pixabay.com/photo/2020/08/26/15/01/toys-5519717_960_720.jpg" alt="Assorted Toys">
+            <div class="box-content">
+                <h3>Assorted Toys</h3>
+                <p>Collection of fun and educational toys.</p>
+                <div class="rating">★★★★★</div>
+                <div class="price">₹99</div>
+                <div class="button-container">
+                    <button type="button" onclick="window.location.href='checkout.html'">Buy now</button>
+                    <button onclick="addToCart('Casual T-Shirt')">Add to cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="box" data-price="799">
+            <img src="https://cdn.pixabay.com/photo/2020/05/11/17/16/girl-5159270_1280.jpg" alt="Girl Playing">
+            <div class="box-content">
+                <h3>Girl dress</h3>
+                <p>Adorable kurta for a little girl.</p>
+                <div class="rating">★★★★☆</div>
+                <div class="price">₹799</div>
+                <div class="button-container">
+                    <button type="button" onclick="window.location.href='checkout.html'">Buy now</button>
+                    <button onclick="addToCart('Casual T-Shirt')">Add to cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="box" data-price="599">
+            <img src="https://cdn.pixabay.com/photo/2015/06/22/08/38/children-817368_960_720.jpg" alt="Children">
+            <div class="box-content">
+                <h3>Siblings dress set</h3>
+                <p>Little girls set with single combo.</p>
+                <div class="rating">★★★☆☆</div>
+                <div class="price">₹599</div>
+                <div class="button-container">
+                    <button type="button" onclick="window.location.href='checkout.html'">Buy now</button>
+                    <button onclick="addToCart('Casual T-Shirt')">Add to cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="box" data-price="699">
+            <img src="https://cdn.pixabay.com/photo/2015/09/09/06/24/sisters-931131_960_720.jpg" alt="Sisters">
+            <div class="box-content">
+                <h3>Sisters dress set</h3>
+                <p>Little girls set with single combo.</p>
+                <div class="rating">★★★★☆</div>
+                <div class="price">₹699</div>
+                <div class="button-container">
+                    <button type="button" onclick="window.location.href='checkout.html'">Buy now</button>
+                    <button onclick="addToCart('Casual T-Shirt')">Add to cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="box" data-price="549">
+            <img src="https://cdn.pixabay.com/photo/2023/09/02/03/14/child-8228075_1280.jpg" alt="Child">
+            <div class="box-content">
+                <h3>kids dress</h3>
+                <p>Portrait of a happy child in nature.</p>
+                <div class="rating">★★★★★</div>
+                <div class="price">₹549</div>
+                <div class="button-container">
+                <button type="button" onclick="window.location.href='checkout.html'">Buy now</button>
+                <button onclick="addToCart('Casual T-Shirt')">Add to cart</button>   
+                </div>
+            </div>
+        </div>
+        <div class="box" data-price="349">
+            <img src="https://cdn.pixabay.com/photo/2017/11/06/13/45/cap-2923682_1280.jpg" alt="Cap">
+            <div class="box-content">
+                <h3>shirt</h3>
+                <p>Trendy shirt for kids.</p>
+                <div class="rating">★★★☆☆</div>
+                <div class="price">₹349</div>
+                <div class="button-container">
+                 <button type="button" onclick="window.location.href='checkout.html'">Buy now</button>
+                <button onclick="addToCart('Casual T-Shirt')">Add to cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="box" data-price="399">
+            <img src="https://cdn.pixabay.com/photo/2016/05/01/15/36/kid-1365105_1280.jpg" alt="Kid">
+            <div class="box-content">
+                <h3>boy dress</h3>
+                <p>Little boy dress.</p>
+                <div class="rating">★★★★☆</div>
+                <div class="price">₹399</div>
+                <div class="button-container">
+                    <button type="button" onclick="window.location.href='checkout.html'">Buy now</button>
+                    <button onclick="addToCart('boy dress')">Add to cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function filterProducts() {
+            const minPrice = parseFloat(document.getElementById('minPrice').value);
+            const maxPrice = parseFloat(document.getElementById('maxPrice').value);
+            const boxes = document.querySelectorAll('.box');
+
+            boxes.forEach(box => {
+                const price = parseFloat(box.getAttribute('data-price'));
+                if (price >= minPrice && price <= maxPrice) {
+                    box.style.display = 'block';
+                } else {
+                    box.style.display = 'none';
+                }
+            });
+        }
+        function addToCart(productName) {
+            alert(productName + ' has been added to cart successfully!');
+        }
+        function redirecttocheckout() {
+            window.location.href= 'shopping/checkout.html';
+        }
+    </script>
+</body>
+</html>

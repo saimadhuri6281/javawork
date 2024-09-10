@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debit Amount</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            width: 300px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        input[type="number"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: green;
+            color: white;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: darkgreen;
+        }
+        .message {
+            margin-top: 10px;
+            font-size: 1.1em;
+        }
+        .message.success {
+            color: green;
+        }
+        .message.error {
+            color: red;
+        }
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #6c757d;
+            color: white;
+            width: 100%;
+        }
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Debit Amount</h1>
+        <input type="number" id="amountInput" placeholder="Enter amount" min="0" required>
+        <button onclick="debitAmount()">Debit Amount</button>
+        <p id="message" class="message"></p>
+        <br>
+        <button type="button" class="back-button" onclick="redirectToMain()">Back to Main</button>
+    </div>
+
+    <script>
+        if (localStorage.getItem('authenticated') !== 'true') {
+            window.location.href = "pin.html"; 
+        }
+
+        function debitAmount() {
+            const amount = parseFloat(document.getElementById('amountInput').value);
+            const message = document.getElementById('message');
+
+            if (isNaN(amount) || amount <= 0) {
+                message.textContent = "Please enter a valid amount.";
+                message.style.color = "red";
+            } else {
+                let balance = parseFloat(localStorage.getItem('balance')) || 50000;
+                
+                if (amount <= balance) {
+                    balance -= amount;
+                    localStorage.setItem('balance', balance);
+                    
+                    alert(`Successfully debited ₹${amount.toFixed(2)} from your account.`);
+                    message.textContent = `Successfully debited ₹${amount.toFixed(2)} from your account.`;
+                    message.style.color = "green";
+                } else {
+                    message.textContent = "Insufficient balance.";
+                    message.style.color = "red";
+                }
+                
+                document.getElementById('amountInput').value = ""; 
+            }
+        }
+
+        function redirectToMain() {
+            window.location.href = "main.html"; 
+        }
+    </script>
+</body>
+</html>

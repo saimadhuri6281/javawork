@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: 2.5em;
+            color: #333; 
+        }
+
+        p {
+            margin: 20px;
+            padding: 20px;
+            background: #fff; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+            width: 80%;
+            max-width: 600px; 
+            text-align: left; 
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        .highlight {
+            color: #555; 
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: lightblue;
+            border: none;
+            color: #333;
+            padding: 12px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 8px; 
+        }
+
+        button:hover {
+            background-color: lightseagreen;
+            color: white; 
+        }
+    </style>
+</head>
+<body>
+    <h1>ACCOUNT DETAILS</h1>
+
+    <p>
+        <span class="label">Bank Name:</span> <span class="highlight">SSB AGRO-BANK</span><br>
+        <span class="label">Branch:</span> <span class="highlight">GAJUWAKA</span><br>
+        <span class="label">Account Number:</span> <span class="highlight">9766227860</span><br>
+        <span class="label">ISFC Code:</span> <span class="highlight">SS9256SK</span><br>
+        <span class="label">Account Holder Name:</span> <span class="highlight">K.SIREESHA</span><br>
+        <span class="label">Account Holder Contact Number:</span> <span class="highlight">1234567890</span><br>
+        <span class="label">Bank Customer Care Number:</span> <span class="highlight">0987654321</span><br>
+        <span class="label">Pin:</span> <span class="highlight">1234</span><br>
+        <span class="label">Balance:</span> <span id="balance" class="highlight">₹50000</span>
+    </p>
+
+    <div class="button-container">
+        <button type="button" onclick="redirectToPage('credit.html')">Credit Amount</button>
+        <button type="button" onclick="redirectToPage('debit.html')">Debit Amount</button>
+        <button type="button" onclick="window.location.href='main.html'">BACK TO HOME PAGE</button>
+    </div>
+
+    <script>
+        if (localStorage.getItem('authenticated') !== 'true') {
+            window.location.href = "pin.html"; 
+        }
+
+        function updateBalance() {
+            const balance = parseFloat(localStorage.getItem('balance')) || 50000; 
+            document.getElementById("balance").innerText = "₹" + balance.toFixed(2);
+        }
+
+        function redirectToPage(page) {
+            localStorage.setItem('redirectUrl', page); 
+            window.location.href = "pin.html"; 
+        }
+
+        window.onload = function() {
+            updateBalance();
+        };
+    </script>
+</body>
+</html>

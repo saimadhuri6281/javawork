@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Verify PIN</h2>
+        <input type="password" id="pinInput" placeholder="Enter PIN" required>
+        <button onclick="verifyPin()">Submit</button>
+        <button class="back-button" onclick="goBack()">Back to Main</button>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        function verifyPin() {
+            const pin = document.getElementById('pinInput').value;
+            const message = document.getElementById('message');
+            if (pin === '1234') { 
+                localStorage.setItem('authenticated', 'true');
+                const redirectUrl = localStorage.getItem('redirectUrl') || 'account.html';
+                localStorage.removeItem('redirectUrl'); 
+                alert('PIN verified successfully!');
+                window.location.href = redirectUrl;
+            } else {
+                message.textContent = 'Invalid PIN. Please try again.';
+                message.style.color = 'red';
+            }
+        }
+
+        function goBack() {
+            window.location.href = 'main.html';
+        }
+    </script>
+</body>
+</html>

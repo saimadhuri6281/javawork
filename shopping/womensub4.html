@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women bags</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .main {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 20px;
+        }
+        aside {
+            width: 450px;
+            padding: 20px;
+            background-color: lightblue;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-right: 20px;
+        }
+        aside h2 {
+            margin-top: 0;
+            font-size: 1.5em;
+            color: #333;
+        }
+        .filter-group {
+            margin-bottom: 20px;
+        }
+        .filter-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .filter-group input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+        }
+        .filter-group input[type="number"]::placeholder {
+            color: #aaa;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        button {
+            background-color: wheat;
+            border: none;
+            color: #333;
+            padding: 10px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: rgb(0, 128, 128);
+            color: white;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            flex-grow: 1;
+        }
+        .item {
+            text-align: center;
+            width: 220px;
+            margin-bottom: 20px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            transition: box-shadow 0.3s ease;
+        }
+        .item:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .item img:hover {
+            transform: scale(1.1);
+        }
+        p {
+            margin: 5px 0;
+            font-size: 1.1em;
+        }
+        .price {
+            font-weight: bold;
+        }
+        .rating {
+            color: green;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <aside>
+            <h2>Filter Products</h2>
+            <div class="filter-group">
+                <label for="minPrice">Min Price:</label>
+                <input type="number" id="minPrice" name="minPrice" placeholder="0" value="0">
+            </div>
+            <div class="filter-group">
+                <label for="maxPrice">Max Price:</label>
+                <input type="number" id="maxPrice" name="maxPrice" placeholder="2000" value="2000">
+            </div>
+            <button onclick="filterProducts()">Apply Filter</button>
+        </aside>
+        <div class="container">
+            <div class="item">
+                <h3>Elegant Handbag</h3>
+                <img src="https://cdn.pixabay.com/photo/2017/08/20/11/39/handbag-2661412_1280.jpg" alt="Elegant Handbag">
+                <p class="price">Rs. 249</p>
+                <p class="description">A stylish handbag perfect for casual and formal occasions.</p>
+                <div class="rating">★★★★☆</div>
+                <button type="button" onclick="window.location.href='checkout.html'">Buy now</button>
+                <button onclick="addToCart('Casual T-Shirt')">Add to cart</button>
+            </div>
+            <div class="item">
+                <h3>Outdoor Backpack</h3>
+                <img src="https://cdn.pixabay.com/photo/2016/11/18/19/39/backpack-1836594_1280.jpg" alt="Outdoor Backpack">
+                <p class="price">Rs. 549</p>
+                <p class="description">Durable and spacious backpack for hiking and travel.</p>
+                <div class="rating">★★★★★</div>
+                <button type="button" onclick="window.location.href='checkout.html'">Buy now</button>
+                <button onclick="addToCart('Casual T-Shirt')">Add to cart</button>
+            </div>
+            <div class="item">
+                <h3>Urban Sling Bag</h3>
+                <img src="https://cdn.pixabay.com/photo/2017/08/07/13/17/people-2603771_1280.jpg" alt="Urban Sling Bag">
+                <p class="price">Rs. 1019</p>
+                <p class="description">Perfect sling bag for carrying your essentials around the city.</p>
+                <div class="rating">★★★★☆</div>
+                <button type="button" onclick="window.location.href='checkout.html'">Buy now</button>
+                <button onclick="addToCart('Casual T-Shirt')">Add to cart</button>
+            </div>
+            <div class="item">
+                <h3>Classic Tote</h3>
+                <img src="https://cdn.pixabay.com/photo/2020/02/04/10/50/bag-4817887_1280.jpg" alt="Classic Tote">
+                <p class="price">Rs. 749</p> 
+                <p class="description">Simple and stylish tote for your everyday needs.</p>
+                <div class="rating">★★★☆☆</div>
+                <button type="button" onclick="window.location.href='checkout.html'">Buy now</button>
+                <button onclick="addToCart('Casual T-Shirt')">Add to cart</button>
+            </div>
+       
+            <div class="item">
+                <h3>Leather Messenger Bag</h3>
+                <img src="https://cdn.pixabay.com/photo/2016/08/30/14/10/bag-1630854_1280.jpg" alt="Leather Messenger Bag">
+                <p class="price">Rs. 899</p> 
+                <p class="description">Sophisticated leather messenger bag with ample space for work essentials.</p>
+                <div class="rating">★★★★☆</div>
+                <button type="button" onclick="window.location.href='checkout.html'">Buy now</button>
+                <button onclick="addToCart('Casual T-Shirt')">Add to cart</button>
+            </div>
+            <div class="item">
+                <h3>Fashion Handbag</h3>
+                <img src="https://cdn.pixabay.com/photo/2024/08/22/08/27/handbag-8988650_1280.jpg" alt="Fashion Handbag">
+                <p class="price">Rs. 1299</p> 
+                <p class="description">Trendy handbag that adds a touch of elegance to any outfit.</p>
+                <div class="rating">★★★★★</div>
+                <button type="button" onclick="window.location.href='checkout.html'">Buy now</button>
+                <button onclick="addToCart('Casual T-Shirt')">Add to cart</button>
+            </div>
+            <div class="item">
+                <h3>Sidebag</h3>
+                <img src="https://cdn.pixabay.com/photo/2016/02/02/11/56/leather-1175154_640.jpg" alt="Sidebag">
+                <p class="price">Rs. 2599</p>
+                <p class="description">Luxurious sidebag made with premium leather for a sleek look.</p>
+                <div class="rating">★★★★☆</div>
+                <button type="button" onclick="window.location.href='checkout.html'">Buy now</button>
+                <button onclick="addToCart('Casual T-Shirt')">Add to cart</button>
+            </div>
+            <div class="item">
+                <h3>Clutch Bag</h3>
+                <img src="https://cdn.pixabay.com/photo/2017/08/20/11/39/handbag-2661412_1280.jpg" alt="Clutch Bag">
+                <p class="price">Rs. 1679</p>
+                <p class="description">Chic clutch bag perfect for evening events and parties.</p>
+                <div class="rating">★★★★☆</div>
+                <button type="button" onclick="window.location.href='checkout.html'">Buy now</button>
+                <button onclick="addToCart('Casual T-Shirt')">Add to cart</button>
+            </div>
+        </div>
+        <script>
+        function filterProducts() {
+            const minPrice = parseFloat(document.getElementById('minPrice').value);
+            const maxPrice = parseFloat(document.getElementById('maxPrice').value);
+            const items = document.querySelectorAll('.item');
+
+            items.forEach(item => {
+                const price = parseFloat(item.getAttribute('data-price'));
+                if (price >= minPrice && price <= maxPrice) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function addToCart(productName) {
+            alert(productName + ' has been added to cart successfully!');
+        }
+        function redirecttocheckout() {
+            window.location.href= 'shopping/checkout.html';
+        }
+    </script>
+</body>
+</html>
